@@ -121,8 +121,8 @@ function show_id -d "Show user"
   if not contains $USER $default_user
     set -l host (hostname -s)
     set -l who (whoami)
-    echo "$who@$host "
-  elif test -n "$SSH_CLIENT"
+    echo "$who@$host"
+  else if test -n "$SSH_CLIENT"
     set -l host (hostname -s)
     echo $host (status current-command)
   else
