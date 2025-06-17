@@ -1,4 +1,4 @@
-set dist_name (lsb_release -i | awk '{print $NF}')
+# set dist_name (lsb_release -i | awk '{print $NF}')
 
 function fish_ellipsis
   echo (string shorten -m 3 '    ' | string trim)
@@ -116,9 +116,22 @@ function title_rev_pwd --description 'reversed CWD for the title'
   end
 end
 
+## Show user if not in default users
+function show_id -d "Show user"
+  if not contains $USER $default_user
+    set -l host (hostname -s)
+    set -l who (whoami)
+    echo "$who@$host "
+  elif test -n "$SSH_CLIENT"
+    set -l host (hostname -s)
+    echo $host (status current-command)
+  else
+    echo (status current-command)
+  end
+end
 
 function fish_title
   # echo $dist_name' '
-  echo (status current-command)' '
+  echo (show_id)' '
   echo (title_rev_pwd)' '
 end
