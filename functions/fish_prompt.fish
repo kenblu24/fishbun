@@ -67,7 +67,7 @@ function prompt_pwd --description 'short CWD for the prompt'
       set -l full
       if test $fish_prompt_pwd_full_dirs -gt 0
         # split into $tmp (stuff to be shortened) and $full (dir names that won't get changed)
-        set -l all (string split -m (math $fish_prompt_pwd_full_dirs - 1) -r / $tmp)
+        set -l all (string split -m (math $fish_prompt_pwd_full_dirs - 0) -r / $tmp)
         set tmp $all[1]
         set full $all[2..]
       else if test $fish_prompt_pwd_full_dirs -eq 0
