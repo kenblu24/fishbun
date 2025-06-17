@@ -39,6 +39,23 @@ Inspired by [cmorrell](https://github.com/oh-my-fish/theme-cmorrell.com) and [pu
 </p>
 
 
+# Options
+
+Reminder: Set a variable with `set -g <variable name> <value>` and erase/unset with `set -e <variable name>`
+
+## Common options
+
+* `default_user` When `$USER` is in `$default_user`, the username@hostname will be hidden.
+* `fish_prompt_pwd_full_dirs` is the number of directories to show the full names of in the prompt. Default is `1`.
+* `fish_prompt_pwd_dir_length` is the maximum length of shortened directories in the prompt. Set to `0` to disable path shortening. Default is `1`.
+
+## Advanced options
+
+* `fish_prompt_no_custom_virtualenv` If defined, ignore `$VIRTUAL_ENV`. Note that virtualenv activation scripts may still modify the prompt.
+* `fish_prompt_pwd_ellipsis` This is passed as the [`string shorten -c`](https://fishshell.com/docs/current/cmds/string.html#shorten-subcommand) argument when shortening path components. Set to `SMART` to let `string shorten` use the default ellipses character. Default is `"SMART"`.
+* `fish_prompt_custom_prefix` If this function is defined, it will be called before the prompt is generated.
+
+
 # License
 
 [MIT][mit] © [kenblu24][author] et [al][contributors]
