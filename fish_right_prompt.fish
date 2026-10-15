@@ -76,6 +76,18 @@ function show_git -d "Function to show git branch info"
 
 end
 
+# paste this to test out the status colors
+# prompt_segment black 'cyan'  "clean  "
+# prompt_segment normal normal ''; echo
+# prompt_segment black 'green' "staged "
+# prompt_segment normal normal ''; echo
+# prompt_segment black 'red'   "dirty  "
+# prompt_segment normal normal ''; echo
+# prompt_segment black 'white' "unknown";
+# prompt_segment normal normal ''; echo
+# prompt_segment normal normal ''
+# echo
+
 function fish_right_prompt
   set -g RETVAL $status
   show_status

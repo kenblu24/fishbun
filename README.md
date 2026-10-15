@@ -35,13 +35,16 @@ Inspired by [cmorrell](https://github.com/oh-my-fish/theme-cmorrell.com) and [pu
 ## Screenshot
 
 <p align="center">
-<img src="{{SCREENSHOT_URL}}">
+<img src="https://github.com/user-attachments/assets/c35228fc-7e7b-41bb-98d8-73ad893edc94">
 </p>
+
+More screenshots:
+https://github.com/kenblu24/fishbun/wiki/screenshots
 
 
 # Options
 
-Reminder: Set a variable with `set -g <variable name> <value>` and erase/unset with `set -e <variable name>`
+Reminder: Set a variable with `set -g <variable name> <value>` and erase/unset with `set -e <variable name>`. Change `-g` to `-U` to make it persist.
 
 ## Common options
 
@@ -54,6 +57,7 @@ Reminder: Set a variable with `set -g <variable name> <value>` and erase/unset w
 * `fish_prompt_no_custom_virtualenv` If defined, ignore `$VIRTUAL_ENV`. Note that virtualenv activation scripts may still modify the prompt.
 * `fish_prompt_pwd_ellipsis` This is passed as the [`string shorten -c`](https://fishshell.com/docs/current/cmds/string.html#shorten-subcommand) argument when shortening path components. Set to `SMART` to let `string shorten` use the default ellipses character. Default is `"SMART"`.
 * `fish_prompt_custom_prefix` If this function is defined, it will be called before the prompt is generated.
+* `fish_prompt_git_timeout` git timeout in seconds. `git status` can be slow in large repos; this prevents your prompt from slowing down. Default is `0.3`.
 
 
 # License
