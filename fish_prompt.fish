@@ -1,5 +1,5 @@
-# name: ocean
-# A fish theme with ocean in mind.
+# name: fishbun
+# A simple fish theme.
 
 
 ## Set this options in your config.fish (if you want to)
@@ -114,9 +114,17 @@ function show_virtualenv -d "Show active python virtual environments"
   if set -q fish_prompt_no_custom_virtualenv
     return
   end
-  set -g VIRTUAL_ENV_DISABLE_PROMPT x
-  if set -q VIRTUAL_ENV
-    set -l venvname (basename "$VIRTUAL_ENV")
+  set -g VIRTUAL_ENV_DISABLE_PROMPT 1
+  if set -q VIRTUAL_ENV_PROMPT
+    set -f venvname $VIRTUAL_ENV_PROMPT
+  else if set -q VIRTUAL_ENV
+    if [ (basename "$VIRTUAL_ENV") = '.venv' ]
+      set -f venvname (path dirname "$VIRTUAL_ENV")
+    else
+      set -f venvname (basename "$VIRTUAL_ENV")
+    end
+  end
+  if set -q venvname
     prompt_segment normal brblack " $venvname"
   end
 end
@@ -139,9 +147,15 @@ end
 
 function _set_venv_project --on-variable VIRTUAL_ENV
   if set -q VIRTUAL_ENV
-    if test -e $VIRTUAL_ENV/.project
-      set -g VIRTUAL_ENV_PROJECT (cat $VIRTUAL_ENV/.project)
+    if not set -q VIRTUAL_ENV_PROJECT
+      if test -e $VIRTUAL_ENV/.project
+        set -g VIRTUAL_ENV_PROJECT (cat $VIRTUAL_ENV/.project)
+      else if [ (basename "$VIRTUAL_ENV") = '.venv' ]
+        set -g VIRTUAL_ENV_PROJECT (path dirname "$VIRTUAL_ENV")
+      end
     end
+  else
+    set --erase VIRTUAL_ENV_PROJECT
   end
 end
 
